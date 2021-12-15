@@ -9,7 +9,7 @@ class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
 
     # .replace('postgres://', 'postgresql://') --> with DATABASE_URL in case of HEROKU Deployment, to use Postgresql
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'app_pkg.db')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL', '').replace('postgres://', 'postgresql://') or 'sqlite:///' + os.path.join(basedir, 'app_pkg.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     POSTS_PER_PAGE = 5

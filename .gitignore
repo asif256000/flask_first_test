@@ -3,20 +3,19 @@
 .flaskenv
 
 # Virtual Environment files
-venv/
+venv
 
 # Log files
-logs/
+logs
+*.log
 
 # Database files
 app_pkg.db
 
 # Babel translation files
 # messages.pot can also be added. but it is regularly deleted by translate command, hence not required.
+*.mo
 app_pkg/translations/*/LC_MESSAGES/messages.mo
-
-# Misc
-.idea/
 
 # VSCode files
 .vscode
@@ -25,5 +24,9 @@ app_pkg/translations/*/LC_MESSAGES/messages.mo
 docker
 
 # pycache files
-*__pycache__/*.pyc
-*/__pycache__/*.pyc
+__pycache__
+*/__pycache__/
+*.pyc
+
+# Misc
+.idea
