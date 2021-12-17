@@ -22,6 +22,9 @@ app_pkg/translations/*/LC_MESSAGES/messages.mo
 
 # Docker files
 docker
+# Files required for Docker Branch, but not for Heroku
+boot.sh
+Dockerfile
 
 # pycache files
 __pycache__
