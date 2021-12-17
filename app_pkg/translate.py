@@ -31,9 +31,13 @@ def ms_translate(text, source_lang, dest_lang):
         'translate?api-version=3.0&from={}&to={}'.format(
             source_lang, dest_lang), headers=auth, json=[{'Text': text}])
 
+    if r.status_code != 200:
+        text = ''
+    else:
+        text = r.json()[0]['translations'][0]['text']
     ret_dict = {
         'status_code': r.status_code,
-        'translated_text': r.json()[0]['translations'][0]['text']
+        'translated_text': text
     }
     return ret_dict
 
@@ -49,8 +53,12 @@ def google_translate(text, source_lang, dest_lang):
     r = requests.post(
         'https://translation.googleapis.com/language/translate/v2', params=auth, json=payload)
     
+    if r.status_code != 200:
+        text = ''
+    else:
+        text = r.json()['data']['translations'][0]['translatedText']
     ret_dict = {
         'status_code': r.status_code,
-        'translated_text': r.json()['data']['translations'][0]['translatedText']
+        'translated_text': text
     }
     return ret_dict
