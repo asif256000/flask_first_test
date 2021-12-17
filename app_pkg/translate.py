@@ -14,9 +14,9 @@ def translate(text_to_translate, source_language, target_language):
         if g_res['status_code'] == 200:
             return g_res['translated_text']
     if (
-        'MS_TRANSLATOR_KEY' not in current_app.config or not current_app.config['MS_TRANSLATOR_KEY']) and (
-            'GOOGLE_TRANSLATOR_KEY' not in current_app.config or not current_app.config['GOOGLE_TRANSLATOR_KEY']
-        ):
+        'MS_TRANSLATOR_KEY' not in current_app.config or not current_app.config['MS_TRANSLATOR_KEY']
+        ) and (
+            'GOOGLE_TRANSLATOR_KEY' not in current_app.config or not current_app.config['GOOGLE_TRANSLATOR_KEY']):
         return _('Error: the translation service is not configured!')
     if m_res['status_code'] != 200 and g_res['status_code'] != 200:
         return _('Error: the translation service failed.')
