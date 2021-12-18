@@ -25,6 +25,7 @@ class Config(object):
     ADMINS = ['asif256000@gmail.com']
 
     MS_TRANSLATOR_KEY = os.environ.get('MS_TRANSLATOR_KEY')
+    GOOGLE_TRANSLATOR_KEY = os.environ.get('GOOGLE_TRANSLATOR_KEY')
 
     ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL')
 
