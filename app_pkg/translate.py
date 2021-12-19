@@ -5,6 +5,7 @@ from flask_babel import _
 
 
 def translate(text_to_translate, source_language, target_language):
+    # TODO: Structure code properly to handle various cases.
     if 'MS_TRANSLATOR_KEY' in current_app.config and current_app.config['MS_TRANSLATOR_KEY']:
         m_res = ms_translate(text_to_translate, source_language, target_language)
         if m_res['status_code'] == 200:
