@@ -25,6 +25,8 @@ services:
       interval: 3s
       retries: 5
       start_period: 30s
+    ports:
+      - 3306:3306
 
 volumes:
   db-data:
