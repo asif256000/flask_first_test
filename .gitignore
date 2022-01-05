@@ -1,6 +1,7 @@
 # Environment variables
 .env
 .flaskenv
+database.conf
 
 # Virtual Environment files
 venv
@@ -25,6 +26,7 @@ docker
 # Files required for Docker Branch, but not for Heroku
 boot.sh
 Dockerfile
+docker_commands.txt
 
 # pycache files
 __pycache__
