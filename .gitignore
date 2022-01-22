@@ -31,8 +31,8 @@ docker_commands.txt
 # Dockerfile
 
 # Files required for Heroku Branch, but not for Docker
-Procfile
-runtime.txt
+# Procfile
+# runtime.txt
 
 # pycache files
 __pycache__
