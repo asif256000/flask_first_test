@@ -24,7 +24,11 @@ class SearchableMixin(object):
 
     @classmethod
     def before_commit(cls, session):
-        session._changes = {"add": list(session.new), "update": list(session.dirty), "delete": list(session.deleted)}
+        session._changes = {
+            "add": list(session.new),
+            "update": list(session.dirty),
+            "delete": list(session.deleted),
+        }
 
     @classmethod
     def after_commit(cls, session):
@@ -75,19 +79,28 @@ class User(UserMixin, SearchableMixin, db.Model):
         backref=db.backref("followers", lazy="dynamic"),
         lazy="dynamic",
     )
+    messages_sent = db.relationship(
+        "Message", foreign_keys="Message.sender_id", backref="author", lazy="dynamic"
+    )
+    messages_received = db.relationship(
+        "Message", foreign_keys="Message.recipient_id", backref="recipient", lazy="dynamic"
+    )
+    last_message_read_time = db.Column(db.DateTime)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return "<User {}>".format(self.username)
 
-    def set_password(self, password):
+    def set_password(self, password: str):
         self.password_hash = generate_password_hash(password)
 
-    def check_password(self, password):
+    def check_password(self, password: str) -> bool:
         return check_password_hash(self.password_hash, password)
 
-    def avatar(self, size=70):
+    def avatar(self, size: int = 70) -> str:
         digest = md5(self.email.lower().encode("utf-8")).hexdigest()
-        return "https://www.gravatar.com/avatar/{hash}?d=identicon&s={size}".format(hash=digest, size=size)
+        return "https://www.gravatar.com/avatar/{hash}?d=identicon&s={size}".format(
+            hash=digest, size=size
+        )
 
     def follow(self, user):
         if not self.is_following(user):
@@ -109,14 +122,26 @@ class User(UserMixin, SearchableMixin, db.Model):
 
     def get_reset_password_token(self, expires_in=600):
         return jwt.encode(
-            {"reset_password": self.id, "exp": time() + expires_in}, current_app.config["SECRET_KEY"], algorithm="HS256"
+            {"reset_password": self.id, "exp": time() + expires_in},
+            current_app.config["SECRET_KEY"],
+            algorithm="HS256",
+        )
+
+    def new_message(self) -> int:
+        last_read_time = self.last_message_read_time or datetime(1900, 1, 1)
+        return (
+            Message.query.filter_by(recipient=self)
+            .filter(Message.timestamp > last_read_time)
+            .count()
         )
 
     @staticmethod
     def verify_reset_password_token(token):
         try:
-            id = jwt.decode(token, current_app.config["SECRET_KEY"], algorithms=["HS256"])["reset_password"]
-        except Exception as exc:
+            id = jwt.decode(token, current_app.config["SECRET_KEY"], algorithms=["HS256"])[
+                "reset_password"
+            ]
+        except Exception:
             # print(exc, 'while verifying reset password token.')
             return
         return User.query.get(id)
@@ -125,6 +150,17 @@ class User(UserMixin, SearchableMixin, db.Model):
 @login.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
+
+class Message(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    sender_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    recipient_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    body = db.Column(db.String(160))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
+    def __repr__(self) -> str:
+        return "<Message {}>".format(self.body)
 
 
 class Post(SearchableMixin, db.Model):
@@ -137,5 +173,5 @@ class Post(SearchableMixin, db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     language = db.Column(db.String(5))
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return "<Post {}>".format(self.body)
