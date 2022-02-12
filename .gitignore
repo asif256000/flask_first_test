@@ -1,7 +1,6 @@
 # Environment variables
 .env
 database.conf
-.dbenv
 .flaskenv
 
 # Virtual Environment files
@@ -36,8 +35,8 @@ docker_commands.txt
 
 # pycache files
 __pycache__
-**/__pycache__
 */__pycache__
+*/__pycache__/*
 *.pyc
 
 # Misc
