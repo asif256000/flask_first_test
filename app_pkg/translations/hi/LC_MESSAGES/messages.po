@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-13 02:20+0530\n"
+"POT-Creation-Date: 2022-02-19 01:54+0530\n"
 "PO-Revision-Date: 2021-12-12 16:35+0530\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: hi\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
-#: app_pkg/__init__.py:21
+#: app_pkg/__init__.py:23
 msgid "Please log in to access this page."
 msgstr ""
 
-#: app_pkg/translate.py:21
+#: app_pkg/translate.py:25
 msgid "Error: the translation service is not configured!"
 msgstr ""
 
-#: app_pkg/translate.py:23
+#: app_pkg/translate.py:27
 msgid "Error: the translation service failed."
 msgstr ""
 
@@ -113,7 +113,7 @@ msgstr ""
 msgid "Please use a different username."
 msgstr ""
 
-#: app_pkg/main/forms.py:27 app_pkg/main/routes.py:217
+#: app_pkg/main/forms.py:27 app_pkg/main/routes.py:242
 msgid "Search"
 msgstr ""
 
@@ -129,11 +129,11 @@ msgstr ""
 msgid "Your post is now live!"
 msgstr ""
 
-#: app_pkg/main/routes.py:46 app_pkg/templates/base.html:103
+#: app_pkg/main/routes.py:46 app_pkg/templates/base.html:135
 msgid "Home"
 msgstr ""
 
-#: app_pkg/main/routes.py:64 app_pkg/templates/base.html:104
+#: app_pkg/main/routes.py:64 app_pkg/templates/base.html:136
 msgid "Explore"
 msgstr ""
 
@@ -168,12 +168,20 @@ msgstr ""
 msgid "You are not following %(username)s anymore."
 msgstr ""
 
-#: app_pkg/main/routes.py:158
+#: app_pkg/main/routes.py:159
 msgid "Your message has been sent."
 msgstr ""
 
-#: app_pkg/main/routes.py:161
+#: app_pkg/main/routes.py:162
 msgid "Send Message"
+msgstr ""
+
+#: app_pkg/main/routes.py:219
+msgid "An export task is currently in progress"
+msgstr ""
+
+#: app_pkg/main/routes.py:221
+msgid "Exporting posts..."
 msgstr ""
 
 #: app_pkg/templates/_post.html:16
@@ -189,19 +197,19 @@ msgstr ""
 msgid "Welcome to Microblog"
 msgstr ""
 
-#: app_pkg/templates/base.html:116
+#: app_pkg/templates/base.html:148
 msgid "Login"
 msgstr ""
 
-#: app_pkg/templates/base.html:120
+#: app_pkg/templates/base.html:152
 msgid "Profile"
 msgstr ""
 
-#: app_pkg/templates/base.html:124 app_pkg/templates/messages.html:4
+#: app_pkg/templates/base.html:157 app_pkg/templates/messages.html:4
 msgid "Messages"
 msgstr ""
 
-#: app_pkg/templates/base.html:127
+#: app_pkg/templates/base.html:169
 msgid "Logout"
 msgstr ""
 
@@ -210,11 +218,11 @@ msgstr ""
 msgid "Hi, %(username)s!"
 msgstr ""
 
-#: app_pkg/templates/index.html:17 app_pkg/templates/user.html:48
+#: app_pkg/templates/index.html:17 app_pkg/templates/user.html:56
 msgid "Newer posts"
 msgstr ""
 
-#: app_pkg/templates/index.html:22 app_pkg/templates/user.html:53
+#: app_pkg/templates/index.html:22 app_pkg/templates/user.html:61
 msgid "Older posts"
 msgstr ""
 
@@ -265,15 +273,23 @@ msgstr ""
 msgid "Edit your profile"
 msgstr ""
 
-#: app_pkg/templates/user.html:19 app_pkg/templates/user_popup.html:22
+#: app_pkg/templates/user.html:16
+msgid "Export your posts"
+msgstr ""
+
+#: app_pkg/templates/user.html:22 app_pkg/templates/user_popup.html:22
 msgid "Follow"
 msgstr ""
 
-#: app_pkg/templates/user.html:26 app_pkg/templates/user_popup.html:30
+#: app_pkg/templates/user.html:29 app_pkg/templates/user_popup.html:30
 msgid "Unfollow"
 msgstr ""
 
-#: app_pkg/templates/user.html:33
+#: app_pkg/templates/user.html:38
+msgid "Send Private Message"
+msgstr ""
+
+#: app_pkg/templates/user.html:41
 msgid "Send private message"
 msgstr ""
 

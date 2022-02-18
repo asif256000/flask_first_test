@@ -9,11 +9,16 @@ load_dotenv(os.path.join(basedir, ".env"))
 class Config(object):
     SECRET_KEY = os.environ.get("SECRET_KEY") or "you-will-never-guess"
 
+    db_url = os.environ.get("DATABASE_URL")
+    if db_url:
+        if db_url.startswith("postgres"):
+            db_url = db_url.replace("postgres://", "postgresql://")
+    else:
+        db_url = "sqlite:///" + os.path.join(basedir, "app_pkg.db")
     # .replace('postgres://', 'postgresql://') -> with DATABASE_URL in case of HEROKU Deployment, to use Postgresql
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL", "").replace(
-        "postgres://", "postgresql://"
-    ) or "sqlite:///" + os.path.join(basedir, "app_pkg.db")
+    SQLALCHEMY_DATABASE_URI = db_url
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    REDIS_URL = os.environ.get("REDIS_URL") or "redis://"
 
     POSTS_PER_PAGE = 5
     LANGUAGES = ["en", "es", "bn", "hi"]

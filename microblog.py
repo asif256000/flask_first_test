@@ -1,5 +1,5 @@
 from app_pkg import cli, create_app, db, mail
-from app_pkg.models import Message, Notification, Post, User
+from app_pkg.models import Message, Notification, Post, Task, User
 
 app = create_app()
 cli.register(app)
@@ -14,4 +14,5 @@ def make_shell_context():
         "Post": Post,
         "Message": Message,
         "Notification": Notification,
+        "Task": Task,
     }
