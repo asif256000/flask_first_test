@@ -1,4 +1,4 @@
-from app_pkg.errors import error_response
+from app_pkg.api.errors import error_response
 from app_pkg.models import User
 from flask_httpauth import HTTPBasicAuth, HTTPTokenAuth
 

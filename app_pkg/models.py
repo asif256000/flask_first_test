@@ -218,7 +218,7 @@ class User(UserMixin, PaginatedAPIMixin, SearchableMixin, db.Model):
         now = datetime.utcnow()
         if self.token and self.token_expiration > now + timedelta(seconds=60):
             return self.token
-        self.token = base64.b64decode(os.urandom(24).decode("utf-8"))
+        self.token = base64.b64decode(os.urandom(24)).decode("utf-8")
         self.token_expiration = now + timedelta(seconds=expires_in)
         db.session.add(self)
         return self.token
