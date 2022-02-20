@@ -14,7 +14,12 @@ def send_async_email(app, msg):
 
 
 def send_email(subject, sender, recipients, text_body, html_body, attachments=None, sync=False):
-    msg = Message(subject, sender=sender, recipients=recipients)  # sender=sender, ???
+    # sender=sender -> causing error: smtplib.SMTPDataError:
+    # (550, b'The from address does not match a verified Sender Identity.
+    # Mail cannot be sent until this error is resolved.
+    # Visit https://sendgrid.com/docs/for-developers/sending-email/sender-identity/
+    # to see the Sender Identity requirements')
+    msg = Message(subject, recipients=recipients)
     msg.body = text_body
     msg.html = html_body
 
